@@ -1,0 +1,22 @@
+server {
+	listen 80;
+	server_name lyra.et-inf.fho-emden.de:19032 http://www.lyra.et-inf.fho-emden.de:19032;
+
+	location / {
+		root /var/www/node/my-app/build;
+		try_files $uri /index.html;
+	}
+}
+
+server {
+	listen 443;
+	server_name lyra.et-inf.fho-emden.de:20032 https://www.lyra.et-inf.fho-emden.de:20032;
+
+	ssl_certificate /var/www/certs/fullchain.pem;
+	ssl_certificate_key /var/www/certs/privkey.pem;
+
+	location / {
+		root /var/www/node/my-app/build;
+		try_files $uri /index.html;
+	}
+}
